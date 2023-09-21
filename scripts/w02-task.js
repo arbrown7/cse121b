@@ -11,19 +11,22 @@ let profilePicture = 'images/DSC06116.JPG';
 const nameElement =  document.getElementById('name');
 const foodElement =  document.getElementById('food');
 const yearElement =  document.querySelector('#year');
-const imageElement = document.getElementsByTagName('img');
+var parentElement = document.getElementById('home');
+const imageElement = parentElement.querySelector('img');
 
 /* Step 4 - Adding Content */
-nameElement.innerHTML
-
-
-
-
+nameElement.innerHTML = `<strong>${fullName}</strong>`;
+yearElement.textContent = currentYear;
+imageElement.setAttribute('src', profilePicture);
+imageElement.setAttribute('alt', `Profile image of ${fullName}`);
 
 /* Step 5 - Array */
-
-
-
-
-
-
+let favoriteFoods = ['Smoothie Bowls', 'Pizza', 'Cereal', 'Taco Soup', 'Baked Potatoes', 'Chicken Tenders'];
+foodElement.innerHTML = favoriteFoods;
+let newFood = 'Pasta';
+favoriteFoods.push(newFood);
+foodElement.innerHTML += `<br>${favoriteFoods}`;
+favoriteFoods.shift();
+foodElement.innerHTML += `<br>${favoriteFoods}`;
+favoriteFoods.pop();
+foodElement.innerHTML += `<br>${favoriteFoods}`;
