@@ -123,7 +123,7 @@ dt {
     font-weight: 700;
 }
 dt::before {
-    content: " ";🏘️
+content: " ";
 }
 dd {
     margin: 0 0 .5rem 2rem;
