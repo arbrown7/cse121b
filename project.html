@@ -32,17 +32,23 @@
   <main>
     <h1>W06: Project</h1>
     <h2>Aztro API Daily Horoscope</h2>
-    <fieldset id="birthdate" legend="Birthdate:">
-      <label for="birthday_day" class="offset">Birth Day</label>
-      <input type="text" name="birthday_day" id="birth_day" size="2" maxlength="2" value="" />
-    
-      <label for="birthday_month" class="offset">Birth Month</label>
-      <input type="text" name="birthday_month" id="birth_month" size="2" maxlength="2" value="" />
-    
-      <label for="birthday_year" class="offset">Birth Year</label>
-      <input type="text" name="birthday_year" id="birth_year" size="4" maxlength="4" value="" />
-      <input type="submit" id="testDate" value="Submit">
-    </fieldset>
+    <div>
+      <h3>Sign Calculator</h3>
+      <fieldset id="birthdate">
+        <legend>Please Enter Your Birthday:</legend>
+        <label for="birthday_day" class="offset">Birth Day</label>
+        <input type="text" name="birthday_day" id="birth_day" size="2" maxlength="2" value="" />
+      
+        <label for="birthday_month" class="offset">Birth Month</label>
+        <input type="text" name="birthday_month" id="birth_month" size="2" maxlength="2" value="" />
+      
+        <label for="birthday_year" class="offset">Birth Year</label>
+        <input type="text" name="birthday_year" id="birth_year" size="4" maxlength="4" value="" />
+        <input type="submit" id="testDate" value="Submit">
+      </fieldset>
+      <label for="calculated_sign" class="offset">Your Sign Is:</label>
+      <input type="text" name="calculated_sign" id="calculated_sign" value="" disabled/>
+    </div>
   </main>
 
   <footer>
