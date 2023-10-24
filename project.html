@@ -28,7 +28,7 @@
         <h1>W06: Project</h1>
         <h2>NASA Astronomy Picture of the Day</h2>
         <div>
-            <fieldset id="date">
+            <fieldset id="dateEntry">
                 <legend>Please Enter A Date:</legend>
                 <label for="day" class="offset">Day</label>
                 <input type="text" name="day" id="day" size="2" maxlength="2" value=""/>
@@ -43,10 +43,12 @@
             </fieldset>
         </div>
         <div id="apodWrapper">
-          <img id="apodImage" src="" alt="APOD">
           <div id="apodDate"></div>
+          <div id="apodTitle"></div>
+          <img id="apodImage" src="" alt="">
+          <div id="apodCopyright"></div>
           <div id="apodExplanation"></div>
-        </div>    
+        </div>   
     </main>
 
     <footer>

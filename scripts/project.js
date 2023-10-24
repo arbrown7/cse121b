@@ -40,6 +40,49 @@ function clearDate() {
     document.querySelector('#year').value = "";
 }
 
+
+
+// Run the API
+function runAPI(selectedDate) {
+    // Make an API request to fetch NASA's APOD content for the selected date.
+    const apiKey = 'baKKsQ3Ca2XELNkVsnWElqij8DrhEfM7O8Vpw1cV';
+    const apiEndpoint = 'https://api.nasa.gov/planetary/apod';
+    const apiUrl = `${apiEndpoint}?api_key=${apiKey}&date=${selectedDate}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("apodImage").src = data.url;
+            document.getElementById("apodDate").textContent = `Picture of the day for: ${selectedDate}`;
+            document.getElementById("apodTitle").textContent = `Title: ${data.title}`;
+            document.getElementById("apodExplanation").textContent = data.explanation;
+            //document.getElementById("apodCopyright").textContent = `Copyright: ${data.copyright}`;
+            // const newEntry = {
+            //     date: data.date,
+            //     title: data.title,
+            //     explanation: data.explanation,
+            //     imageUrl: data.url,
+            // };
+            // return newEntry;
+        })
+        .catch(error => {
+            console.error("Error fetching APOD content:", error);
+            throw error; // Rethrow the error to handle it in the calling code
+        });
+}
+
+// Display today's image as a placeholder before the user inputs a date
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the current date in YYYY-MM-DD format.
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based.
+    const day = today.getDate().toString().padStart(2, '0');
+    // Fetch and display today's APOD image.
+    let date = formatDate(year, month, day);
+    runAPI(date);
+});
+
 // function getDayBefore(dateString) {
 //     const currentDate = new Date(dateString); // Convert the input date string to a Date object
 //     currentDate.setDate(currentDate.getDate() - 1); // Subtract one day from the current date
@@ -76,35 +119,6 @@ function clearDate() {
 //     displayAPODData(APODData);
 // }
 
-// Run the API
-function runAPI(selectedDate) {
-    // Make an API request to fetch NASA's APOD content for the selected date.
-    const apiKey = 'baKKsQ3Ca2XELNkVsnWElqij8DrhEfM7O8Vpw1cV';
-    const apiEndpoint = 'https://api.nasa.gov/planetary/apod';
-    const apiUrl = `${apiEndpoint}?api_key=${apiKey}&date=${selectedDate}`;
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("apodImage").src = data.url;
-            document.getElementById("apodDate").textContent = `Date: ${selectedDate}`;
-            document.getElementById("apodExplanation").textContent = data.explanation;
-            // const newEntry = {
-            //     date: data.date,
-            //     title: data.title,
-            //     explanation: data.explanation,
-            //     imageUrl: data.url,
-            // };
-            // return newEntry;
-        })
-        .catch(error => {
-            console.error("Error fetching APOD content:", error);
-            throw error; // Rethrow the error to handle it in the calling code
-        });
-}
-
-
-
 // function displayAPODData(apodData) {
 //     const container = document.getElementById("apodDataContainer");
 
@@ -139,18 +153,6 @@ function runAPI(selectedDate) {
    
 // }
 
-
-// Display today's image as a placeholder before the user inputs a date
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the current date in YYYY-MM-DD format.
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based.
-    const day = today.getDate().toString().padStart(2, '0');
-    // Fetch and display today's APOD image.
-    let date = formatDate(year, month, day);
-    runAPI(date);
-});
 // Step 7: Handle errors.
 // - Implement error handling to manage cases where the API request fails or no horoscope data is returned.
 

@@ -321,3 +321,7 @@ footer {
     height: auto;
     margin: 20px 0; /* Add space between the image and the content */
 }
+
+#dateEntry {
+    text-align: center;
+}
