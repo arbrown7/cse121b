@@ -31,23 +31,23 @@
   -->
   <main>
     <h1>W06: Project</h1>
-    <h2>Aztro API Daily Horoscope</h2>
+    <h2>NASA Astronomy Picture of the Day</h2>
     <div>
-      <h3>Sign Calculator</h3>
-      <fieldset id="birthdate">
-        <legend>Please Enter Your Birthday:</legend>
-        <label for="birthday_day" class="offset">Birth Day</label>
-        <input type="text" name="birthday_day" id="birth_day" size="2" maxlength="2" value="" />
+      <fieldset id="date">
+        <legend>Please Enter A Date:</legend>
+        <label for="day" class="offset">Day</label>
+        <input type="text" name="day" id="day" size="2" maxlength="2" value="" />
       
-        <label for="birthday_month" class="offset">Birth Month</label>
-        <input type="text" name="birthday_month" id="birth_month" size="2" maxlength="2" value="" />
+        <label for="month" class="offset">Month</label>
+        <input type="text" name="month" id="month" size="2" maxlength="2" value="" />
       
-        <label for="birthday_year" class="offset">Birth Year</label>
-        <input type="text" name="birthday_year" id="birth_year" size="4" maxlength="4" value="" />
+        <label for="year" class="offset">Year</label>
+        <input type="text" name="year" id="year" size="4" maxlength="4" value="" />
         <input type="submit" id="testDate" value="Submit">
       </fieldset>
-      <label for="calculated_sign" class="offset">Your Sign Is:</label>
-      <input type="text" name="calculated_sign" id="calculated_sign" value="" disabled/>
+    </div>
+    <div id="apodContent">
+      <!-- APOD content will be displayed here -->
     </div>
   </main>
 

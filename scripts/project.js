@@ -4,37 +4,38 @@
 document.querySelector('#testDate').addEventListener('click', testDate);
 
 function testDate() {
-    let day = Number(document.querySelector('#birth_day').value);
-    let month = Number(document.querySelector('#birth_month').value);
-    let year = Number(document.querySelector('#birth_year').value);
+    let day = Number(document.querySelector('#day').value);
+    let month = Number(document.querySelector('#month').value);
+    let year = Number(document.querySelector('#year').value);
 
     //dateTester(day, month, year);
     if (dateTester(day, month, year)){
-        document.querySelector('#calculated_sign').value = calculateZodiacSign(day, month); 
+        let date = formatDate(year, month - 1, day);
+        runAPI(date);
     } else {
         //Enter date again
         console.log("Tested date was wrong");
-        document.querySelector('#birth_day').value = "";
-        document.querySelector('#birth_month').value = "";
-        document.querySelector('#birth_year').value = "";
+        document.querySelector('#day').value = "";
+        document.querySelector('#month').value = "";
+        document.querySelector('#year').value = "";
     }
 }
 
-// Validate user input (optional).
-// - Implement validation to ensure the user provides a valid birthdate and zodiac sign.
+// Validate user input
+// - Implement validation to ensure the user provides a valid date.
 
 const dateTester = (day, month, year) => {
     month -= 1;
-    const birthdate = new Date(year, month, day);
+    const selectedDate = new Date(year, month, day);
     const currentDate = new Date();
-    if(isNaN(birthdate)){
+    if(isNaN(selectedDate)){
         console.log("Date is not a number");
         return false;
-    } else if (birthdate.getFullYear() !== year || birthdate.getMonth() !== month || birthdate.getDate() !== day){
+    } else if (selectedDate.getFullYear() !== year || selectedDate.getMonth() !== month || selectedDate.getDate() !== day){
         console.log("Date does not exist");
         return false;
-    } else if (birthdate > currentDate){
-        console.log("Birthdate hasn't happened yet!");
+    } else if (selectedDate > currentDate){
+        console.log("Date hasn't happened yet!");
         return false;
     } else {
         console.log("Date is valid.");
@@ -42,45 +43,41 @@ const dateTester = (day, month, year) => {
     }
 };
 
-function calculateZodiacSign(day, month) {
-    // console.log(month);
-    // console.log(day);
-    if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
-      return 'Aries';
-    } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
-      return 'Taurus';
-    } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
-      return 'Gemini';
-    } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
-      return 'Cancer';
-    } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
-      return 'Leo';
-    } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
-      return 'Virgo';
-    } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
-      return 'Libra';
-    } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
-      return 'Scorpio';
-    } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
-      return 'Sagittarius';
-    } else if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
-      return 'Capricorn';
-    } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
-      return 'Aquarius';
-    } else {
-      return 'Pisces';
-    }
+function formatDate(year, month, day) {
+    // Ensure the month and day have two digits (e.g., '05' instead of '5').
+    const formattedMonth = String(month).padStart(2, '0');
+    const formattedDay = String(day).padStart(2, '0');
+
+    // Combine the year, month, and day with '-' as the separator.
+    const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
+
+    return formattedDate;
 }
 
-// Step 5: Call the Aztro API.
-// - Use the Fetch API to send a POST request to the Aztro API.
-// - Include the user's zodiac sign and the desired day (e.g., "today") in the request body.
-// - Handle the API response, which will contain horoscope and astrology insights.
 
-// Step 6: Display the horoscope.
-// - Extract and format the horoscope data from the API response.
-// - Update the DOM to display the daily horoscope on the webpage.
+function runAPI(selectedDate) {
+    // Make an API request to fetch NASA's APOD content for the selected date.
+    // You would need to replace 'API_KEY' and 'API_ENDPOINT' with actual values.
+    const apiKey = 'baKKsQ3Ca2XELNkVsnWElqij8DrhEfM7O8Vpw1cV';
+    const apiEndpoint = 'https://api.nasa.gov/planetary/apod';
+    const apiUrl = `${apiEndpoint}?api_key=${apiKey}&date=${selectedDate}`;
 
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Display APOD content on the page, e.g., image, video, explanation, title.
+            document.getElementById("apodContent").innerHTML = `
+                <h2>${data.title}</h2>
+                <p>Date: ${selectedDate}</p>
+                <img src="${data.url}" alt="${data.title}">
+                <p>${data.explanation}</p>
+            `;
+        })
+        .catch(error => {
+            console.error("Error fetching APOD content:", error);
+        });
+}
+  
 // Step 7: Handle errors.
 // - Implement error handling to manage cases where the API request fails or no horoscope data is returned.
 
