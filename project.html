@@ -25,8 +25,8 @@
     </nav>
 
     <main class="custom-main">
-        <h1>W06: Project</h1>
-        <h2>NASA Astronomy Picture of the Day</h2>
+        <h1 id="projecth1">W06: Project</h1>
+        <h2 id="projecth2">NASA Astronomy Picture of the Day</h2>
         <div>
             <fieldset id="dateEntry">
                 <legend>Please Enter A Date:</legend>
@@ -48,7 +48,13 @@
           <img id="apodImage" src="" alt="">
           <div id="apodCopyright"></div>
           <div id="apodExplanation"></div>
-        </div>   
+        </div>
+        <div id="searchedDatesList">
+          <h4 id="searchedTitle">Previously Searched Dates</h4>
+          <ul id="searchedDates">
+            <!-- List items will be added here dynamically using JavaScript -->
+          </ul>
+        </div>        
     </main>
 
     <footer>

@@ -164,6 +164,10 @@ footer {
     width: 100%;
     position: fixed;
     bottom: 0;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 0; /* Lower z-index to keep it behind content */
 }
 
 /* Class Selectors */
@@ -312,7 +316,7 @@ footer {
     text-align: center;
     margin: 0 auto;
     max-width: 800px; /* Adjust the maximum width as needed */
-    margin-bottom: 70px; /* Add margin at the bottom */
+    margin-bottom: 20px; /* Add margin at the bottom */
 }
 
 
@@ -324,4 +328,28 @@ footer {
 
 #dateEntry {
     text-align: center;
+}
+
+/* Style the searched dates list */
+#searchedDatesList {
+    margin: 50px;
+    margin-bottom: 70px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column; /* Change flex direction to column */
+    justify-content: flex-start;
+    z-index: 1; /* Add a higher z-index to keep it above the footer */
+}
+
+/* Style the list items */
+#searchedDatesList ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+#searchedDatesList ul li {
+    margin: 5px;
 }

@@ -1,5 +1,5 @@
 import { dateTester } from './dateTesterModule.js';
-
+const searchedDates = [];
 // Fetch user input.
 // - Create a function to collect the user's input date.
 // - Use event listeners to trigger the function when a user submits the form.
@@ -14,6 +14,7 @@ function testDate() {
     //dateTester(day, month, year);
     if (dateTester(day, month, year)){
         let date = formatDate(year, month, day);
+        addSearchedDateToList(date)
         runAPI(date);
         //getAPODData(day, month, year);
     } else {
@@ -40,7 +41,15 @@ function clearDate() {
     document.querySelector('#year').value = "";
 }
 
-
+function addSearchedDateToList(date) {
+    
+    console.log("Date added to array.")
+    const list = document.getElementById("searchedDates");
+    const listItem = document.createElement("li");
+    listItem.classList.add("searched-date");
+    listItem.textContent = date;
+    list.appendChild(listItem);
+}
 
 // Run the API
 function runAPI(selectedDate) {
